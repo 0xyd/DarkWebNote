@@ -69,6 +69,8 @@ def run_onionscan(onion):
 
     stdout = process.communicate()[0]
 
+    print('check process.commnicate():')
+    print(process.communicate())
     print('check stdout')
     print(stdout)
 
