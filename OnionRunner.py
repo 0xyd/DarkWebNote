@@ -141,7 +141,7 @@ def process_results(onion, json_response):
 	with open('%s/%s.json' % ('onionscan_results', onion), 'wb') as f:
 		f.write(json_response)
 
-	scan_result = json.loads(json_response)
+	scan_result = json.loads('%s' % json_response)
 	# scan_result = '%s' % json_response.decode('utf8')
 	# scan_result = json.loads(scan_result)
 
