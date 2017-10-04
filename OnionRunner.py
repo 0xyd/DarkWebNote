@@ -51,17 +51,17 @@ def store_onion(onion):
 def run_onionscan(onion):
     '''run_scanning
     :description:
-        Run orion scanning in children process. The process will scan onion for 5 minutes.
+        Run onion scanning in children process. The process will scan onion for 5 minutes.
     :params:
         onion:
         a hidden sevice to be scanned.
 
     '''
 
-    print('Start Orionscanning on %s' % onion)
+    print('Start Onionscanning on %s' % onion)
     
     process = subprocess.Popen(
-        ["orionscan", "webport=0", "--jsonReport", "--simpleReport=false", onion],
+        ["onionscan", "webport=0", "--jsonReport", "--simpleReport=false", onion],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
     process_timer = Timer(300, handle_timeout, args=[process, onion])
