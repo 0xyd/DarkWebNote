@@ -144,14 +144,14 @@ def process_results(onion, json_response):
     scan_result = '%s' % json_response.decode('utf8')
     scan_result = json.loads(scan_result)
 
-    if scan_result['identifierReport']['linkedOnions'] is not None:
-		add_new_onions(scan_result['identifierReport']['linkedOnions'])		
+        if scan_result['identifierReport']['linkedOnions'] is not None:
+	        add_new_onions(scan_result['identifierReport']['linkedOnions'])		
 		
-	if scan_result['identifierReport']['relatedOnionDomains'] is not None:
-		add_new_onions(scan_result['identifierReport']['relatedOnionDomains'])
+        if scan_result['identifierReport']['relatedOnionDomains'] is not None:
+            add_new_onions(scan_result['identifierReport']['relatedOnionDomains'])
 		
-	if scan_result['identifierReport']['relatedOnionServices'] is not None:
-		add_new_onions(scan_result['identifierReport']['relatedOnionServices'])
+        if scan_result['identifierReport']['relatedOnionServices'] is not None:
+            add_new_onions(scan_result['identifierReport']['relatedOnionServices'])
 
 def add_new_onions(new_onion_list):
     '''add_new_onions
