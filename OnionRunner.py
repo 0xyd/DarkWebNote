@@ -141,8 +141,9 @@ def process_results(onion, json_response):
 	with open('%s/%s.json' % ('onionscan_results', onion), 'wb') as f:
 		f.write(json_response)
 
-	scan_result = '%s' % json_response.decode('utf8')
-	scan_result = json.loads(scan_result)
+	scan_result = json.loads(json_response)
+	# scan_result = '%s' % json_response.decode('utf8')
+	# scan_result = json.loads(scan_result)
 
 	if scan_result['identifierReport']['linkedOnions'] is not None:
 		add_new_onions(scan_result['identifierReport']['linkedOnions'])
@@ -171,7 +172,7 @@ def add_new_onions(new_onion_list):
             onions.append(linked_onion)
             session_onions.append(linked_onion)
             random.shuffle(session_onions)
-            store_onion(linked)
+            store_onion(linked_onion)
 
 def main():
     onions = get_onion_list()
