@@ -69,6 +69,9 @@ def run_onionscan(onion):
 
     stdout = process.communicate()[0]
 
+    print('check stdout')
+    print(stdout)
+
     # Kill the timer after we recevied value
     if process_timer.is_alive():
         process_timer.cancel()
