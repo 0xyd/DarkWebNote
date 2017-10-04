@@ -29,7 +29,7 @@ def get_onion_list():
     onion_names_list = 'onion_master_list.txt'
     if os.path.exists(onion_names_list):
         onions = open(onion_names_list, 'r').readlines()
-        print 'There are %d onions for scanning' % len(onions)
+        print('There are %d onions for scanning' % len(onions))
         return onions
     else:
         print('Download the onion list before running.')
@@ -121,37 +121,37 @@ def handle_timeout(process, onion):
     identity_lock.set()
 
 def process_results(onion, json_response):
-    '''process_results
-    :description:
-        Process the json result made by onionscan
-    :params:
-        onion: 
-        The hidden server
+	'''process_results
+	:description:
+		Process the json result made by onionscan
+	:params:
+		onion: 
+		The hidden server
 
-        json_response:
-        The output json data of onionscan
-    '''
+	json_response:
+		The output json data of onionscan
+	'''
 
-    global onions
-    global session_onions
+	global onions
+	global session_onions
 
-    if not os.path.exists('onionscan_results'):
-        os.mkdir("onionscan_results")
+	if not os.path.exists('onionscan_results'):
+		os.mkdir("onionscan_results")
 
-    with open('%s/%s.json' % ('onionscan_results', onion), 'wb') as f:
-        f.write(json_response)
+	with open('%s/%s.json' % ('onionscan_results', onion), 'wb') as f:
+		f.write(json_response)
 
-    scan_result = '%s' % json_response.decode('utf8')
-    scan_result = json.loads(scan_result)
+	scan_result = '%s' % json_response.decode('utf8')
+	scan_result = json.loads(scan_result)
 
-        if scan_result['identifierReport']['linkedOnions'] is not None:
-	        add_new_onions(scan_result['identifierReport']['linkedOnions'])		
-		
-        if scan_result['identifierReport']['relatedOnionDomains'] is not None:
-            add_new_onions(scan_result['identifierReport']['relatedOnionDomains'])
-		
-        if scan_result['identifierReport']['relatedOnionServices'] is not None:
-            add_new_onions(scan_result['identifierReport']['relatedOnionServices'])
+	if scan_result['identifierReport']['linkedOnions'] is not None:
+		add_new_onions(scan_result['identifierReport']['linkedOnions'])
+
+	if scan_result['identifierReport']['relatedOnionDomains'] is not None:
+		add_new_onions(scan_result['identifierReport']['relatedOnionDomains'])
+
+	if scan_result['identifierReport']['relatedOnionServices'] is not None:
+		add_new_onions(scan_result['identifierReport']['relatedOnionServices'])
 
 def add_new_onions(new_onion_list):
     '''add_new_onions
@@ -187,7 +187,7 @@ def main():
         onion = session_onions.pop()
 
         if os.path.exists("onionscan_results/%s.json" % onion):
-            print "[!] Already retrieved %s. Skipping" % onion
+            print("[!] Already retrieved %s. Skipping" % onion)
             count += 1
             continue
         result = run_onionscan(onion)
